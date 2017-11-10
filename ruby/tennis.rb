@@ -13,17 +13,14 @@ class TennisGame1
   end
 
   def end_of_game
-    case @player_one_points - @player_two_points
-    when 1
-      return "Advantage #{@player_one}"
-    when -1
-      return "Advantage #{@player_two}"
-    when 2,3,4
-      return "Win for #{@player_one}"
-    else
-      return "Win for #{@player_two}"
-    end
+    difference = @player_one_points - @player_two_points
+    winner = (difference>0) ? @player_one : @player_two
 
+    if difference.abs > 1
+      return "Win for #{winner}"
+    else
+      return "Advantage #{winner}"
+    end
   end
 
   def score
@@ -32,7 +29,7 @@ class TennisGame1
       return equal_score_names [@player_one_points]
 
     elsif (@player_one_points >= 4 || @player_two_points >= 4)
-    return end_of_game
+      return end_of_game
     else
       score_names = ["Love", "Fifteen", "Thirty", "Forty"]
       return "#{score_names[@player_one_points]}-#{score_names[@player_two_points]}"
