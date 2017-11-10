@@ -25,8 +25,8 @@ class TennisGame1
 
   def score
     if (@player_one_points == @player_two_points)
-      equal_score_names = ["Love-All", "Fifteen-All", "Thirty-All", "Deuce", "Deuce"]
-      return equal_score_names [@player_one_points]
+      equal_score_names = ["Love-All", "Fifteen-All", "Thirty-All"]
+      return equal_score_names [@player_one_points] || "Deuce"
 
     elsif (@player_one_points >= 4 || @player_two_points >= 4)
       return end_of_game
